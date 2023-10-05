@@ -1,0 +1,11 @@
+python main_delta.py \
+    --exp_name DEBUG_FINAL_$1++_$2_lattice_vdim$3_sigma$4_run$5 \
+    --alg $1 \
+    --model $2 \
+    --graph lattice \
+    --vdim $3 \
+    --sigma $4 \
+    --print_every 100 \
+    --epsilon 0 \
+    --temp 2 \
+    --batchsz 1000

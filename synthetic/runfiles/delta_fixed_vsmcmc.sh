@@ -1,0 +1,19 @@
+python main_delta.py \
+    --exp_name MCMC_Delta_rand_ising_$1_vdim$2_sigma$3_run$4 \
+    --alg rand \
+    --model ising \
+    --graph $1 \
+    --vdim $2 \
+    --epsilon 1 \
+    --temp 10 \
+    --sigma $3 \
+    --vs_mcmc \
+    --print_every 50 \
+    --n_iters 10000 \
+    --factor_steps 1000 \
+    --act relu \
+    --glr 1e-3 \
+    --mlr 1e-1 \
+    --batchsz 10000 \
+    --hdim 512 \
+    --sampleV_every 10

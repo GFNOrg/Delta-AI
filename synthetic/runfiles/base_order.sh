@@ -1,0 +1,11 @@
+python main_order_gfn.py \
+    --exp_name DEBUG_FINAL_$1++_$2_lattice_vdim$3_br$4_run$5 \
+    --alg $1 \
+    --model $2 \
+    --graph lattice \
+    --vdim $3 \
+    --back_ratio $4 \
+    --print_every 100 \
+    --uniform \
+    --epsilon 0.1 \
+    --temp 1

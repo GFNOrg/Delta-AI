@@ -1,0 +1,26 @@
+python main_delta.py \
+     --save_every 10000 \
+     --eval_every 100 \
+     --path . \
+     --save_dir ./results \
+     --alg rand \
+     --sampling_dag partial \
+     --sample_dags_every 10 \
+     --repeat_nodes 7 \
+     --n_nodes 164 \
+     --n_subdags_per_node 1 \
+     --n_fulldags_per_batch 1 \
+     --n_iters 50000 \
+     --K 8 4 2 \
+     --stride 4 2 1 \
+     --h_depth 4 \
+     --epsilon 0.05 \
+     --temp 4 \
+     --q_lr 1e-3 \
+     --p_lr 1e-3 \
+     --marg_q_lr 1e-1 \
+     --marg_p_lr 1e-1 \
+     --hdim_mae 512 \
+     --q_iters 100 \
+     --p_iters 100 \
+     --q_objective delta
