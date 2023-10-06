@@ -151,13 +151,14 @@ class DeltaAI(nn.Module):
         V_ = self._dist.perturb(V, ilist)
         logQ_pVi_pai, sum_logQ_Vj_paj_pVi = self._get_conditionals(K_pa, K_ch, V_, ilist)
 
+        K_pa = self.pgm.K_pa[self.sampling_dag]["p"]
+        K_ch = self.pgm.K_ch[self.sampling_dag]["p"]
         with torch.no_grad():
-            sum_Vsk = p.probV(V, self.sampling_dag, log=True)
-            sum_Vsk_pVi = p.probV(V_, self.sampling_dag, log=True)
+            logP_Vi_pai, sum_logP_Vj_paj = p._get_conditionals(K_pa, K_ch, V, ilist)
+            logP_pVi_pai, sum_logP_Vj_paj_pVi = p._get_conditionals(K_pa, K_ch, V_, ilist)
 
-        loss = logQ_Vi_pai - logQ_pVi_pai
-        loss += sum_logQ_Vj_paj - sum_logQ_Vj_paj_pVi
-        loss -= sum_Vsk - sum_Vsk_pVi
+        loss = (logQ_Vi_pai - logQ_pVi_pai) + (sum_logQ_Vj_paj - sum_logQ_Vj_paj_pVi)
+        loss -= (logP_Vi_pai - logP_pVi_pai) + (sum_logP_Vj_paj - sum_logP_Vj_paj_pVi)
 
         return (loss**2).mean()
 
